@@ -21,23 +21,26 @@ export function renderRatings(
 
   const allRows: StatRow[] = [];
 
+  // Row 1: Ratings
   if (user.currentRating !== null) {
     allRows.push({ label: "Current Rating", value: String(user.currentRating), hideKey: "currentRating", accent: true });
   }
   if (user.highestRating !== null) {
     allRows.push({ label: "Highest Rating", value: String(user.highestRating), hideKey: "highestRating" });
   }
-  if (user.globalRank !== null) {
-    allRows.push({ label: "Global Rank", value: `#${user.globalRank}`, hideKey: "globalRank" });
-  }
-  if (user.countryRank !== null) {
-    allRows.push({ label: "Country Rank", value: `#${user.countryRank}`, hideKey: "countryRank" });
-  }
+  // Row 2: Problems & Contests
   if (user.problemsSolved !== null) {
     allRows.push({ label: "Problems Solved", value: String(user.problemsSolved), hideKey: "problemsSolved" });
   }
   if (user.contestsParticipated !== null) {
     allRows.push({ label: "Contests", value: String(user.contestsParticipated), hideKey: "contests" });
+  }
+  // Row 3: Ranks
+  if (user.globalRank !== null) {
+    allRows.push({ label: "Global Rank", value: `#${user.globalRank}`, hideKey: "globalRank" });
+  }
+  if (user.countryRank !== null) {
+    allRows.push({ label: "Country Rank", value: `#${user.countryRank}`, hideKey: "countryRank" });
   }
 
   const visible = allRows.filter((r) => !hide.has(r.hideKey));
