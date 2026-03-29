@@ -173,6 +173,7 @@ export default function ConfigForm() {
   const [hide, setHide] = useState<string[]>([]);
   const [colors, setColors] = useState<Record<string, string>>({});
   const [bgImage, setBgImage] = useState("");
+  const [showThemes, setShowThemes] = useState(false);
   const [showCustomize, setShowCustomize] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -246,47 +247,67 @@ export default function ConfigForm() {
       </form>
 
       {/* Theme Picker */}
-      <div className="space-y-4">
-        {THEME_ROWS.map((row) => (
-          <div key={row.label}>
-            <label className="block font-mono text-[10px] tracking-wider text-brown-400 uppercase mb-1.5">
-              {row.label}
-            </label>
-            <div className="flex gap-2 flex-wrap">
-              {row.themes.map((t) => {
-                const swatch = THEME_SWATCHES[t] || ["#000", "#fff"];
-                const isActive = theme === t;
-                return (
-                  <button
-                    key={t}
-                    onClick={() => setTheme(t)}
-                    title={t}
-                    className={`group relative flex flex-col items-center gap-1 cursor-pointer transition-all duration-200
-                      ${isActive ? "scale-105" : "hover:scale-105"}`}
-                    style={{ width: "calc((100% - 6 * 0.5rem) / 7)", minWidth: 56 }}
-                  >
-                    <div
-                      className={`w-full aspect-[3/2] rounded-lg border-2 overflow-hidden relative transition-all duration-200
-                        ${isActive
-                          ? "border-brown-600 shadow-md shadow-brown-600/30 ring-2 ring-brown-600/20"
-                          : "border-brown-200 group-hover:border-brown-400"
-                        }`}
-                      style={{ background: swatch[0] }}
-                    >
-                      <div className="absolute bottom-1 right-1 w-2.5 h-2.5 rounded-full border border-white/30"
-                        style={{ background: swatch[1] }}
-                      />
-                    </div>
-                    <span className={`text-[10px] font-mono leading-tight truncate w-full text-center
-                      ${isActive ? "text-brown-700 font-semibold" : "text-brown-400"}`}>
-                      {t.replace("gradient-", "")}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+      <div className="border-2 border-brown-200 rounded-xl overflow-hidden">
+        <button onClick={() => setShowThemes(!showThemes)}
+          className="w-full flex items-center justify-between px-5 py-3.5 hover:bg-brown-50/50 transition-colors cursor-pointer">
+          <div className="flex items-center gap-3">
+            <svg className="w-5 h-5 text-brown-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" />
+            </svg>
+            <span className="font-mono text-xs tracking-wider text-brown-600 uppercase font-semibold">
+              Theme: <span className="text-brown-500">{theme}</span>
+            </span>
           </div>
-        ))}
+          <svg className={`w-4 h-4 text-brown-400 transition-transform duration-200 ${showThemes ? "rotate-180" : ""}`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        {showThemes && (
+          <div className="border-t border-brown-200 p-5 space-y-4">
+            {THEME_ROWS.map((row) => (
+              <div key={row.label}>
+                <label className="block font-mono text-[10px] tracking-wider text-brown-400 uppercase mb-1.5">
+                  {row.label}
+                </label>
+                <div className="flex gap-2 flex-wrap">
+                  {row.themes.map((t) => {
+                    const swatch = THEME_SWATCHES[t] || ["#000", "#fff"];
+                    const isActive = theme === t;
+                    return (
+                      <button
+                        key={t}
+                        onClick={() => setTheme(t)}
+                        title={t}
+                        className={`group relative flex flex-col items-center gap-1 cursor-pointer transition-all duration-200
+                          ${isActive ? "scale-105" : "hover:scale-105"}`}
+                        style={{ width: "calc((100% - 6 * 0.5rem) / 7)", minWidth: 56 }}
+                      >
+                        <div
+                          className={`w-full aspect-[3/2] rounded-lg border-2 overflow-hidden relative transition-all duration-200
+                            ${isActive
+                              ? "border-brown-600 shadow-md shadow-brown-600/30 ring-2 ring-brown-600/20"
+                              : "border-brown-200 group-hover:border-brown-400"
+                            }`}
+                          style={{ background: swatch[0] }}
+                        >
+                          <div className="absolute bottom-1 right-1 w-2.5 h-2.5 rounded-full border border-white/30"
+                            style={{ background: swatch[1] }}
+                          />
+                        </div>
+                        <span className={`text-[10px] font-mono leading-tight truncate w-full text-center
+                          ${isActive ? "text-brown-700 font-semibold" : "text-brown-400"}`}>
+                          {t.replace("gradient-", "")}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Font & Extension */}
