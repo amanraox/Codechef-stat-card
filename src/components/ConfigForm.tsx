@@ -485,7 +485,7 @@ export default function ConfigForm() {
               Markdown
             </label>
             <div className="flex items-stretch gap-3">
-              <div className="code-block flex-1 truncate">{markdown}</div>
+              <div className="code-block flex-1 overflow-x-auto whitespace-nowrap">{markdown}</div>
               <CopyButton text={markdown} label="Copy" />
             </div>
           </div>
@@ -494,7 +494,7 @@ export default function ConfigForm() {
               URL
             </label>
             <div className="flex items-stretch gap-3">
-              <div className="code-block flex-1 truncate">{fullUrl}</div>
+              <div className="code-block flex-1 overflow-x-auto whitespace-nowrap">{fullUrl}</div>
               <CopyButton text={fullUrl} label="Copy" />
             </div>
           </div>
