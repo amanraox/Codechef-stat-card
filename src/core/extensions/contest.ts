@@ -35,7 +35,7 @@ export function renderContestChart(
     })
   );
 
-  const last20 = contests.slice(-20);
+  const last20 = contests.slice(-30);
   const ratings = last20.map((c) => c.rating);
   const minR = Math.min(...ratings);
   const maxR = Math.max(...ratings);
