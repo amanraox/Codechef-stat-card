@@ -10,9 +10,12 @@ export function parseProfile(html: string, username: string): CodeChefUser {
   const highestRating = extractHighestRating($);
   const { stars, starColor: scrapedColor } = extractStars($);
   const starColor = scrapedColor || getTierColor(stars);
+  const division = extractDivision($);
   const { globalRank, countryRank } = extractRanks($);
   const { country, countryCode } = extractCountry($);
   const avatarUrl = extractAvatar($);
+  const problemsSolved = extractProblemsSolved($);
+  const contestsParticipated = extractContestsParticipated($);
   const contestHistory = extractContestHistory(html);
   const submissionStats = extractSubmissionStats(html);
 
@@ -23,11 +26,14 @@ export function parseProfile(html: string, username: string): CodeChefUser {
     highestRating,
     stars,
     starColor,
+    division,
     globalRank,
     countryRank,
     country,
     countryCode,
     avatarUrl,
+    problemsSolved,
+    contestsParticipated,
     contestHistory,
     submissionStats,
   };
@@ -149,6 +155,39 @@ function extractAvatar($: cheerio.CheerioAPI): string | null {
     $(".profileImage").first().attr("src") ||
     $("img.profileImage").first().attr("src");
   return img || null;
+}
+
+function extractDivision($: cheerio.CheerioAPI): string | null {
+  // Plain <div> right after .rating-number, text like "(Div 1)"
+  const ratingHeader = $(".rating-header").text();
+  const m = ratingHeader.match(/\(Div\s*(\d+)\)/i);
+  return m ? `Div ${m[1]}` : null;
+}
+
+function extractProblemsSolved($: cheerio.CheerioAPI): number | null {
+  // <h3>Total Problems Solved: 632</h3> inside section.problems-solved
+  const section = $("section.problems-solved").text();
+  const m = section.match(/Total Problems Solved:\s*(\d+)/i);
+  if (m) return parseInt(m[1], 10);
+
+  // Fallback: any h3/h5 with "Total Problems Solved"
+  const allText = $("h3, h5").filter((_, el) =>
+    $(el).text().includes("Total Problems Solved")
+  ).text();
+  const f = allText.match(/(\d+)/);
+  return f ? parseInt(f[1], 10) : null;
+}
+
+function extractContestsParticipated($: cheerio.CheerioAPI): number | null {
+  // <div class="contest-participated-count">No. of Contests Participated: <b>102</b></div>
+  const el = $(".contest-participated-count b").first().text().trim();
+  const n = parseInt(el, 10);
+  if (!isNaN(n)) return n;
+
+  // Fallback from text
+  const text = $(".contest-participated-count").text();
+  const m = text.match(/(\d+)/);
+  return m ? parseInt(m[1], 10) : null;
 }
 
 function extractContestHistory(html: string): ContestEntry[] {

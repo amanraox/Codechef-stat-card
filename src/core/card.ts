@@ -2,7 +2,7 @@ import type { CodeChefUser, CardConfig, ThemePalette } from "./types";
 import { CARD_FONTS, DEFAULT_FONT } from "./types";
 import { Item } from "./item";
 import { rect, setCardFont, getCardFont } from "./elements";
-import { renderHeader, renderRatings, renderRanks } from "./sections";
+import { renderHeader, renderRatings } from "./sections";
 import { renderHeatmap, renderContestChart } from "./extensions";
 
 const PADDING = 20;
@@ -153,13 +153,6 @@ export function buildCard(
   if (ratings.height > 0) {
     sections.push(ratings);
     y += ratings.height + 8;
-  }
-
-  // Ranks
-  const ranks = renderRanks(user, theme, PADDING, y, config.hide);
-  if (ranks.height > 0) {
-    sections.push(ranks);
-    y += ranks.height + 8;
   }
 
   // Extensions

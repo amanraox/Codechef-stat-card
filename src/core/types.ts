@@ -21,11 +21,14 @@ export interface CodeChefUser {
   highestRating: number | null;
   stars: number | null;
   starColor: string | null;
+  division: string | null;
   globalRank: number | null;
   countryRank: number | null;
   country: string | null;
   countryCode: string | null;
   avatarUrl: string | null;
+  problemsSolved: number | null;
+  contestsParticipated: number | null;
   contestHistory: ContestEntry[];
   submissionStats: SubmissionDay[];
 }

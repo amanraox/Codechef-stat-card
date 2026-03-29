@@ -78,6 +78,8 @@ const HIDE_OPTIONS = [
   { value: "highestRating", label: "Highest Rating" },
   { value: "globalRank", label: "Global Rank" },
   { value: "countryRank", label: "Country Rank" },
+  { value: "problemsSolved", label: "Problems Solved" },
+  { value: "contests", label: "Contests" },
 ];
 
 const COLOR_FIELDS = [
