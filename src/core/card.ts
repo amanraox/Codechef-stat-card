@@ -1,7 +1,7 @@
 import type { CodeChefUser, CardConfig, ThemePalette } from "./types";
 import { CARD_FONTS, DEFAULT_FONT } from "./types";
 import { Item } from "./item";
-import { rect, setCardFont, getCardFont } from "./elements";
+import { rect, setCardFont, getCardFont, group, path } from "./elements";
 import { renderHeader, renderRatings } from "./sections";
 import { renderHeatmap, renderContestChart } from "./extensions";
 
@@ -179,6 +179,21 @@ export function buildCard(
   // Background
   const { defs, bgItems } = buildBackground(theme, config.bgImage, w, y);
   const children = [...bgItems, ...sections.map((s) => s.item)];
+
+  // CodeChef chef hat icon (top-right corner, subtle)
+  const chefHatIcon = group(
+    [
+      path(
+        "M11 2C8.5 2 6.5 3.5 6.5 5.5c0 .5.1 1 .3 1.4C5.1 7.6 4 9.2 4 11v1h14v-1c0-1.8-1.1-3.4-2.8-4.1.2-.4.3-.9.3-1.4C15.5 3.5 13.5 2 11 2zM4 13v1.5c0 .3.2.5.5.5h13c.3 0 .5-.2.5-.5V13H4z",
+        { fill: theme.subtext }
+      ),
+    ],
+    {
+      transform: `translate(${w - PADDING - 22}, ${PADDING + 2})`,
+      opacity: 0.35,
+    }
+  );
+  children.push(chefHatIcon);
 
   // Google Fonts
   const googleFontName = GOOGLE_FONT_NAMES[fontKey] || GOOGLE_FONT_NAMES[DEFAULT_FONT];
