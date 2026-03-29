@@ -14,6 +14,7 @@ import "./gradient-royal";
 import "./gradient-neon";
 import "./gradient-cosmic";
 import "./gradient-ember";
+import "./gradient-midnight";
 
 // Row 3: Light solid themes
 import "./light";

@@ -1,47 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface PreviewProps {
-  username: string;
-  theme: string;
-  extension: string;
-  font: string;
-  hide: string[];
-  colors: Record<string, string>;
-  bgImage: string;
+  svgUrl: string;
 }
 
-export default function Preview({
-  username, theme, extension, font, hide, colors, bgImage,
-}: PreviewProps) {
-  const [svgUrl, setSvgUrl] = useState("");
+export default function Preview({ svgUrl }: PreviewProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
-  useEffect(() => {
-    if (!username) {
-      setSvgUrl("");
-      return;
-    }
-
-    const params = new URLSearchParams();
-    if (theme !== "light") params.set("theme", theme);
-    if (extension) params.set("ext", extension);
-    if (font !== "roboto mono") params.set("font", font);
-    if (hide.length > 0) params.set("hide", hide.join(","));
-    if (bgImage) params.set("bg_image", bgImage);
-
-    for (const [k, v] of Object.entries(colors)) {
-      if (v) params.set(k, v.replace("#", ""));
-    }
-
-    const qs = params.toString();
-    const url = `/api/${encodeURIComponent(username)}${qs ? `?${qs}` : ""}`;
-    setSvgUrl(url);
-    setLoading(true);
-    setError(false);
-  }, [username, theme, extension, font, hide, colors, bgImage]);
 
   return (
     <div className="relative">
@@ -55,17 +22,18 @@ export default function Preview({
           backgroundSize: "16px 16px",
         }}
       >
-        {!username && (
+        {!svgUrl && (
           <p className="text-brown-300 font-serif italic text-lg">
-            Enter a username to see the preview
+            Enter a username and click Generate
           </p>
         )}
-        {username && svgUrl && (
+        {svgUrl && (
           <div className="w-full flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              key={svgUrl}
               src={svgUrl}
-              alt={`CodeChef card for ${username}`}
+              alt="CodeChef card preview"
               className={`max-w-full transition-opacity duration-500 ${loading ? "opacity-0" : "opacity-100"}`}
               onLoad={() => {
                 setLoading(false);
@@ -74,6 +42,9 @@ export default function Preview({
               onError={() => {
                 setLoading(false);
                 setError(true);
+              }}
+              ref={(el) => {
+                if (el && !el.complete) setLoading(true);
               }}
             />
             {loading && (
