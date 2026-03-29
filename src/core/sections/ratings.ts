@@ -1,4 +1,4 @@
-import type { CodeChefUser, ThemePalette } from "../types";
+import type { CodeChefUser, ThemePalette, CardConfig } from "../types";
 import { Item } from "../item";
 import { text, group } from "../elements";
 
@@ -14,51 +14,63 @@ export function renderRatings(
   theme: ThemePalette,
   x: number,
   y: number,
-  hide: Set<string>
+  hide: Set<string>,
+  cardWidth?: number
 ): { item: Item; height: number } {
   const children: Item[] = [];
 
-  const rows: StatRow[] = [];
+  const allRows: StatRow[] = [];
 
   if (user.currentRating !== null) {
-    rows.push({ label: "Current Rating", value: String(user.currentRating), hideKey: "currentRating", accent: true });
+    allRows.push({ label: "Current Rating", value: String(user.currentRating), hideKey: "currentRating", accent: true });
   }
   if (user.highestRating !== null) {
-    rows.push({ label: "Highest Rating", value: String(user.highestRating), hideKey: "highestRating" });
+    allRows.push({ label: "Highest Rating", value: String(user.highestRating), hideKey: "highestRating" });
   }
   if (user.globalRank !== null) {
-    rows.push({ label: "Global Rank", value: `#${user.globalRank}`, hideKey: "globalRank" });
+    allRows.push({ label: "Global Rank", value: `#${user.globalRank}`, hideKey: "globalRank" });
   }
   if (user.countryRank !== null) {
-    rows.push({ label: "Country Rank", value: `#${user.countryRank}`, hideKey: "countryRank" });
+    allRows.push({ label: "Country Rank", value: `#${user.countryRank}`, hideKey: "countryRank" });
   }
   if (user.problemsSolved !== null) {
-    rows.push({ label: "Problems Solved", value: String(user.problemsSolved), hideKey: "problemsSolved" });
+    allRows.push({ label: "Problems Solved", value: String(user.problemsSolved), hideKey: "problemsSolved" });
   }
   if (user.contestsParticipated !== null) {
-    rows.push({ label: "Contests", value: String(user.contestsParticipated), hideKey: "contests" });
+    allRows.push({ label: "Contests", value: String(user.contestsParticipated), hideKey: "contests" });
   }
 
-  let offsetY = 0;
-  for (const row of rows) {
-    if (hide.has(row.hideKey)) continue;
+  const visible = allRows.filter((r) => !hide.has(r.hideKey));
+  if (visible.length === 0) return { item: group([]), height: 0 };
 
+  // 2-column grid layout
+  const colWidth = ((cardWidth || 500) - x * 2) / 2;
+  const ROW_H = 38;
+
+  for (let i = 0; i < visible.length; i++) {
+    const row = visible[i];
+    const col = i % 2;
+    const rowIdx = Math.floor(i / 2);
+    const cx = x + col * colWidth;
+    const cy = y + rowIdx * ROW_H;
+
+    // Value (big)
     children.push(
-      text(row.label, x, y + offsetY + 14, {
-        size: 12,
-        fill: theme.subtext,
-      })
-    );
-    children.push(
-      text(row.value, x + 130, y + offsetY + 14, {
-        size: 13,
+      text(row.value, cx, cy + 16, {
+        size: 16,
         fill: row.accent ? theme.accent : theme.text,
         weight: "bold",
       })
     );
-    offsetY += 22;
+    // Label (small below)
+    children.push(
+      text(row.label, cx, cy + 30, {
+        size: 10,
+        fill: theme.subtext,
+      })
+    );
   }
 
-  if (children.length === 0) return { item: group([]), height: 0 };
-  return { item: group(children), height: offsetY };
+  const totalRows = Math.ceil(visible.length / 2);
+  return { item: group(children), height: totalRows * ROW_H };
 }

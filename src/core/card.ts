@@ -149,7 +149,7 @@ export function buildCard(
   y += header.height + 12;
 
   // Ratings
-  const ratings = renderRatings(user, theme, PADDING, y, config.hide);
+  const ratings = renderRatings(user, theme, PADDING, y, config.hide, w);
   if (ratings.height > 0) {
     sections.push(ratings);
     y += ratings.height + 8;
