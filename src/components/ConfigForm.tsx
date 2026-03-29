@@ -226,7 +226,7 @@ export default function ConfigForm() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="username"
-              className="w-full pl-[168px] pr-4 py-3.5 bg-white border-2 border-brown-200 rounded-xl
+              className="w-full pl-[185px] pr-4 py-3.5 bg-white border-2 border-brown-200 rounded-xl
                 font-mono text-brown-800 placeholder:text-brown-300
                 focus:outline-none focus:border-brown-500 focus:ring-2 focus:ring-brown-500/10
                 transition-all duration-200"
