@@ -181,14 +181,14 @@ export function buildCard(
   const children = [...bgItems, ...sections.map((s) => s.item)];
 
   // CodeChef icon + text — top-right, as a fixed block from right edge
-  // Layout: [icon 28px] [5px gap] [text ~62px] — right-aligned
+  // Icon: 24x24 path scaled to 1.5x = 36px rendered
   const ccRight = w - PADDING;
-  const ccIconRendered = 28; // 2x size: 24 * (28/24)
-  const ccGap = 5;
-  const ccTextW = 62; // "CodeChef" at 13px approx
-  const ccBlockStart = ccRight - ccTextW - ccGap - ccIconRendered;
-  const ccScale = ccIconRendered / 24;
-  const ccIconY = PADDING + 3;
+  const ccScale = 1.5;
+  const ccRenderedW = Math.round(24 * ccScale); // 36px
+  const ccGap = 4;
+  const ccTextW = 62;
+  const ccBlockStart = ccRight - ccTextW - ccGap - ccRenderedW;
+  const ccIconY = PADDING;
   children.push(
     new Item("g", { transform: `translate(${ccBlockStart},${ccIconY}) scale(${ccScale})` }, [
       new Item("path", {
@@ -198,7 +198,7 @@ export function buildCard(
     ])
   );
   children.push(
-    text("CodeChef", ccBlockStart + ccIconRendered + ccGap, PADDING + 20, {
+    text("CodeChef", ccBlockStart + ccRenderedW + ccGap, PADDING + 20, {
       size: 13,
       fill: theme.subtext,
       weight: "600",
