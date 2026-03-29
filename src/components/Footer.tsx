@@ -27,6 +27,18 @@ export default function Footer() {
           </svg>
           Star & Contribute
         </a>
+        <a
+          href="https://pay.amanraox.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-amber/30
+            text-sm text-amber hover:bg-amber/10 hover:border-amber/50 transition-all"
+        >
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2 21V19H4V12C4 10.6167 4.41667 9.3875 5.25 8.3125C6.08333 7.2375 7.16667 6.53333 8.5 6.2V5.5C8.5 4.53333 8.84167 3.70833 9.525 3.025C10.2083 2.34167 11.0333 2 12 2C12.9667 2 13.7917 2.34167 14.475 3.025C15.1583 3.70833 15.5 4.53333 15.5 5.5V6.2C16.8333 6.53333 17.9167 7.2375 18.75 8.3125C19.5833 9.3875 20 10.6167 20 12V19H22V21H2ZM12 4C11.5833 4 11.2292 4.14583 10.9375 4.4375C10.6458 4.72917 10.5 5.08333 10.5 5.5V6H13.5V5.5C13.5 5.08333 13.3542 4.72917 13.0625 4.4375C12.7708 4.14583 12.4167 4 12 4Z"/>
+          </svg>
+          Buy me a coffee
+        </a>
       </div>
 
       <div className="flex items-center justify-center gap-1.5 text-brown-400 text-sm">
