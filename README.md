@@ -1,36 +1,222 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# CodeChef Stat Card
 
-First, run the development server:
+**Dynamically generated CodeChef stats cards for your GitHub README**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?theme=dark&ext=contest)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/amanraox/Codechef-stat-card)
+
+[Live Demo](https://codechef-stat-card.vercel.app) · [Report Bug](https://github.com/amanraox/Codechef-stat-card/issues) · [Request Feature](https://github.com/amanraox/Codechef-stat-card/issues)
+
+</div>
+
+---
+
+## Usage
+
+Copy-paste this into your README and replace `username` with your CodeChef handle:
+
+```md
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/username)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Example
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```md
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Themes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Use the `theme` parameter to change the look:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```md
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?theme=dracula)
+```
 
-## Deploy on Vercel
+### Light Gradients
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| `gradient-peach` | `gradient-sky` | `gradient-lavender` |
+|:---:|:---:|:---:|
+| ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-peach) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-sky) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-lavender) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| `gradient-mint` | `gradient-rose` | `gradient-sunset` | `gradient-candy` |
+|:---:|:---:|:---:|:---:|
+| ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-mint) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-rose) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-sunset) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-candy) |
+
+### Dark Gradients
+
+| `gradient-ocean` | `gradient-aurora` | `gradient-royal` |
+|:---:|:---:|:---:|
+| ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-ocean) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-aurora) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-royal) |
+
+| `gradient-neon` | `gradient-cosmic` | `gradient-ember` |
+|:---:|:---:|:---:|
+| ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-neon) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-cosmic) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=gradient-ember) |
+
+### Light Solid
+
+| `light` | `warm` | `paper` | `sakura` |
+|:---:|:---:|:---:|:---:|
+| ![](https://codechef-stat-card.vercel.app/api/tourist?theme=light) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=warm) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=paper) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=sakura) |
+
+| `ocean-light` | `leaf` | `sand` |
+|:---:|:---:|:---:|
+| ![](https://codechef-stat-card.vercel.app/api/tourist?theme=ocean-light) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=leaf) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=sand) |
+
+### Dark Solid
+
+| `dark` | `nord` | `dracula` | `tokyonight` |
+|:---:|:---:|:---:|:---:|
+| ![](https://codechef-stat-card.vercel.app/api/tourist?theme=dark) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=nord) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=dracula) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=tokyonight) |
+
+| `cyberpunk` | `aurora` | `ember` |
+|:---:|:---:|:---:|
+| ![](https://codechef-stat-card.vercel.app/api/tourist?theme=cyberpunk) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=aurora) | ![](https://codechef-stat-card.vercel.app/api/tourist?theme=ember) |
+
+---
+
+## Extensions
+
+### Submission Heatmap
+
+```md
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?theme=dark&ext=heatmap)
+```
+
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?theme=dark&ext=heatmap)
+
+### Rating History Chart
+
+```md
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?theme=tokyonight&ext=contest)
+```
+
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?theme=tokyonight&ext=contest)
+
+---
+
+## Options
+
+| Parameter | Description | Default |
+|---|---|---|
+| `theme` | Card theme | `light` |
+| `ext` | Extension: `heatmap` or `contest` | none |
+| `font` | Font family (see below) | `roboto mono` |
+| `hide` | Comma-separated fields to hide | none |
+| `width` | Card width in pixels (300-800) | `500` |
+| `bg_image` | HTTPS image URL for card background | none |
+| `bg` | Background color override (hex) | theme default |
+| `border` | Border color override | theme default |
+| `title` | Title color override | theme default |
+| `text` | Text color override | theme default |
+| `subtext` | Subtext color override | theme default |
+| `accent` | Accent color override | theme default |
+| `gridFill` | Heatmap fill color override | theme default |
+| `chartLine` | Chart line color override | theme default |
+
+### Hide Fields
+
+Hide specific stats with comma-separated values:
+
+```md
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?hide=globalRank,countryRank)
+```
+
+Available: `currentRating`, `highestRating`, `globalRank`, `countryRank`
+
+### Fonts
+
+```md
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?font=fira%20code)
+```
+
+Available: `roboto`, `roboto mono`, `fira code`, `jetbrains mono`, `source code pro`, `inter`, `poppins`, `space grotesk`, `ubuntu`, `ubuntu mono`
+
+### Custom Background Image
+
+```md
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?bg_image=https://example.com/bg.jpg&theme=dark)
+```
+
+A semi-transparent overlay is applied automatically for text readability.
+
+### Custom Colors
+
+Override any theme color with hex values (without `#`):
+
+```md
+![CodeChef Stats](https://codechef-stat-card.vercel.app/api/tourist?bg=0d1117&title=58a6ff&accent=f78166)
+```
+
+---
+
+## Deploy Your Own
+
+### One-Click Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/amanraox/Codechef-stat-card)
+
+### Manual Setup
+
+```bash
+git clone https://github.com/amanraox/Codechef-stat-card.git
+cd Codechef-stat-card
+npm install
+npm run dev
+```
+
+Visit `http://localhost:3000` for the landing page or `http://localhost:3000/api/tourist` for a raw SVG card.
+
+---
+
+## Tech Stack
+
+- **Next.js 15** (App Router) on Vercel
+- **TypeScript** throughout
+- **Tailwind CSS v4** for landing page
+- **cheerio** for HTML parsing
+- String-based SVG generation (no React for cards)
+- Vercel CDN caching + in-memory LRU cache
+
+## How It Works
+
+```
+GET /api/{username}?theme=dark&ext=heatmap
+  -> Parse query params
+  -> Check cache
+  -> Scrape codechef.com/users/{username}
+  -> Parse HTML + extract embedded JS data
+  -> Resolve theme + color overrides
+  -> Build SVG card sections
+  -> Apply extension (heatmap / contest chart)
+  -> Return SVG with Cache-Control headers
+```
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit PRs for:
+- New themes
+- New extensions
+- Bug fixes
+- Improved scraping selectors
+
+## License
+
+MIT
+
+---
+
+<div align="center">
+
+Built with love by [@amanraox](https://amanraox.dev)
+
+</div>
