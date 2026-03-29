@@ -55,7 +55,7 @@ export default function Home() {
               <span className="text-brown-400">{" -->"}</span>
               <br />
               <span className="text-amber-light">{"![CodeChef Stats]"}</span>
-              <span className="text-brown-300">{"(https://your-domain/api/"}</span>
+              <span className="text-brown-300">{"(https://codechef-stat-card.vercel.app/api/"}</span>
               <span className="text-amber">username</span>
               <span className="text-brown-300">{")"}</span>
             </div>
