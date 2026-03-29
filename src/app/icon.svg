@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5b4638"/>
+      <stop offset="100%" stop-color="#d4a373"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+  <!-- Chef hat -->
+  <path d="M9 17v-3.5c0-1.2.5-2.3 1.3-3.1C10.1 9.8 10 9.2 10 8.5 10 6.6 11.6 5 13.5 5c.7 0 1.3.2 1.8.5C15.7 5.2 16.1 5 16.5 5c.4 0 .8.2 1.2.5.5-.3 1.1-.5 1.8-.5C21.4 5 23 6.6 23 8.5c0 .7-.1 1.3-.3 1.9.8.8 1.3 1.9 1.3 3.1V17" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="9" y="17" width="14" height="2.5" rx="0.5" fill="#fff"/>
+  <!-- Code brackets -->
+  <text x="16" y="27.5" text-anchor="middle" font-family="monospace" font-weight="bold" font-size="8" fill="#fff" opacity="0.95">&lt;/&gt;</text>
+</svg>
