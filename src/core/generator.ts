@@ -34,5 +34,9 @@ export async function generateCard(config: CardConfig): Promise<string> {
 }
 
 function buildCacheKey(config: CardConfig): string {
-  return `${config.username}:${config.theme}:${config.extension || "none"}:${Array.from(config.hide).sort().join(",")}:${config.width}:${config.font}:${config.bgImage || ""}`;
+  const overrides = Object.entries(config.colorOverrides)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([k, v]) => `${k}=${v}`)
+    .join(",");
+  return `${config.username}:${config.theme}:${config.extension || "none"}:${Array.from(config.hide).sort().join(",")}:${config.width}:${config.font}:${config.bgImage || ""}:${overrides}`;
 }
